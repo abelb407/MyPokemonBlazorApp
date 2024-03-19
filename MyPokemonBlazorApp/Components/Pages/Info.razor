@@ -5,7 +5,42 @@
 
 @if (pokemon is not null)
 {
-    <p>@pokemon?.Name</p>
+
+
+    <div class="card">
+        <div class="card-body bg-light">
+            <h1>@pokemon?.Name</h1>
+            <h4 id="badge"> @pokemon?.Type ◯ Generation @pokemon?.Generation </h4>
+
+
+            <div> HP: @pokemon?.HP</div>
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="@pokemon.HP" ></div>
+            </div>
+
+
+            <p>Attack: @pokemon?.Attack</p>
+
+
+
+            <p>Defence: @pokemon?.Defence</p>
+
+
+
+            <p>Speed: @pokemon?.Speed</p>
+
+
+
+            <p>BST: @pokemon?.Total</p>
+
+        </div>
+    </div>
+
+
+
+
+
+
 }
 
 else
