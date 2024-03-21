@@ -11,41 +11,97 @@
     <div class="card">
         <div class="card-body bg-light">
 
-            <img src="@imageurl" onerror="this.onerror=null;this.src='/img/sadtogepiedit.png';" style="width:500px" align="left"  />
+            <img src="@imageurl" onerror="this.onerror=null;this.src='/img/sadtogepiedit.png';" style="width:425px" align="left"  />
 
             <h1>@pokemon?.Name</h1>
+            @if (pokemon?.Legendary == true)
+            {
+                <span class="badge rounded-pill bg-warning">Legendary</span>
+            }
             <span class="badge text-bg-primary">@pokemon?.Type</span>
             <span class="badge text-bg-secondary">Generation @pokemon?.Generation</span>
 
+           
 
-            <div> HP </div>
+
+
+            @if (@pokemon?.HP > 99) 
+            {
+                <p>HP</p>
+               <div align="right"></div>
             <div class="progress" style="height: 30px;">
                 <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="@pokemon?.HP" style="width:@(pokemon?.HP*100/255)%" aria-valuemin="1" aria-valuemax="255">@pokemon?.HP</div>
-            </div>
+            </div> }
+            else {
+                <p> HP </p>
+                <div align="right"> </div>
+                <div class="progress" style="height: 30px;">
+                    <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="@pokemon?.HP" style="width:@(pokemon?.HP*100/255)%" aria-valuemin="1" aria-valuemax="255">@pokemon?.HP</div>
+                </div>
+            }
+
+            @if (@pokemon?.Attack > 99)
+            {
+                <p>Attack</p>
+                <div align="right" class="progress" style="height: 30px;">
+                    <div class="progress-bar progress-bar-striped  progress-bar-animated bg-success" role="progressbar" aria-valuenow="@pokemon?.Attack" style="width:@(pokemon?.Attack*100/255)%" aria-valuemin="1" aria-valuemax="255">@pokemon?.Attack</div>
+                </div>
+            } 
+
+            else
+            {
+                <p>Attack</p>
+                <div align="right" class="progress" style="height: 30px;">
+                    <div class="progress-bar  bg-danger" role="progressbar" aria-valuenow="@pokemon?.Attack" style="width:@(pokemon?.Attack*100/255)%" aria-valuemin="1" aria-valuemax="255">@pokemon?.Attack</div>
+                </div>
+            }
 
 
-            <p>Attack</p>
-            <div class="progress" style="height: 30px;">
-                <div class="progress-bar progress-bar-striped  progress-bar-animated bg-warning" role="progressbar" aria-valuenow="@pokemon?.Attack" style="width:@(pokemon?.Attack*100/255)%" aria-valuemin="1" aria-valuemax="255">@pokemon?.Attack</div>
-            </div>
+            @if (@pokemon?.Defence > 99)
+            {
+                <p>Defence</p>
+                <div align="right" class="progress" style="height: 30px;">
+                    <div class="progress-bar progress-bar-striped  progress-bar-animated bg-success" role="progressbar" aria-valuenow="@pokemon?.Defence" style="width: @(pokemon?.Defence*100/255)%" aria-valuemin="1" aria-valuemax="255">@pokemon?.Defence</div>
+                </div>
+            } 
+            else
+            {
+                <p>Defence</p>
+                <div align="right" class="progress" style="height: 30px;">
+                    <div class="progress-bar  bg-danger" role="progressbar" aria-valuenow="@pokemon?.Defence" style="width: @(pokemon?.Defence*100/255)%" aria-valuemin="1" aria-valuemax="255">@pokemon?.Defence</div>
+                </div>
+            }
 
+            @if (pokemon?.Speed > 99)
+            {
+                <p>Speed</p>
+                <div align="right" class="progress" style="height: 30px;">
+                <div class="progress-bar progress-bar-striped  progress-bar-animated bg-success" role="progressbar" aria-valuenow="@pokemon?.Speed" style="width:@(pokemon?.Speed*100/255)%" aria-valuemin="1" aria-valuemax="255">@pokemon?.Speed</div>
+                </div>
+            }
+            else
+            {
+                <p>Speed</p>
+                <div align="right" class="progress" style="height: 30px;">
+                    <div class="progress-bar  bg-danger" role="progressbar" aria-valuenow="@pokemon?.Speed" style="width:@(pokemon?.Speed*100/255)%" aria-valuemin="1" aria-valuemax="255">@pokemon?.Speed</div>
+                </div>
+            }
 
-            <p>Defence</p>
-            <div class="progress" style="height: 30px;">
-                <div class="progress-bar progress-bar-striped  progress-bar-animated bg-info" role="progressbar" aria-valuenow="@pokemon?.Defence" style="width: @(pokemon?.Defence*100/255)%" aria-valuemin="1" aria-valuemax="255">@pokemon?.Defence</div>
-            </div>
+            @if (pokemon?.Total > 500)
+            {
+                <p>BST</p>
+                <div align="right" class="progress" style="height: 30px;">
+                <div class="progress-bar progress-bar-striped  progress-bar-animated bg-success" role="progressbar" aria-valuenow="@pokemon?.Total" style="width:@(pokemon?.Total*100/800)%" aria-valuemin="150" aria-valuemax="800">@pokemon?.Total</div>
+                </div>
+            }
 
-
-            <p>Speed</p>
-            <div class="progress" style="height: 30px;">
-                <div class="progress-bar progress-bar-striped  progress-bar-animated bg-muted" role="progressbar" aria-valuenow="@pokemon?.Speed" style="width:@(pokemon?.Speed*100/255)%" aria-valuemin="1" aria-valuemax="255">@pokemon?.Speed</div>
-            </div>
-
-
-            <p>BST</p>
-            <div class="progress" style="height: 30px;">
-                <div class="progress-bar progress-bar-striped  progress-bar-animated bg-danger" role="progressbar" aria-valuenow="@pokemon?.Total" style="width:@(pokemon?.Total*100/800)%" aria-valuemin="150" aria-valuemax="800">@pokemon?.Total</div>
-            </div>
+            else
+            {
+                <p>BST</p>
+                <div align="right" class="progress" style="height: 30px;">
+                    <div class="progress-bar  bg-danger" role="progressbar" aria-valuenow="@pokemon?.Total" style="width:@(pokemon?.Total*100/800)%" aria-valuemin="150" aria-valuemax="800">@pokemon?.Total</div>
+                </div>
+            }
 
         </div>
     </div>
