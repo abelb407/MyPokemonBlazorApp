@@ -1,0 +1,109 @@
+﻿@page "/trainers"
+@rendermode InteractiveServer
+@inject DatabaseContext DbContext
+
+<h3>Trainers</h3>
+
+<div class="row g-0">
+    <div class="col-md-12">
+        <button class="btn btn-primary float-end" @onclick="ShowForm">
+            Add 
+        </button>
+    </div>
+
+</div>
+
+@if (showform)
+{
+    <div class="card">
+        <div class="card-body bg-light"> 
+            <h4 class="card-title"> 
+                Add Trainer
+            </h4>
+            <EditForm OnValidSubmit="Submit" EditContext="editcontext">
+                <div class="row g-3"> 
+                    <div class="col md-3">
+                        <label for="name" class="form-label">Name</label>
+                        <InputText class="form-control" placeholder="Name" @bind-Value="model.Name" />
+                    </div>
+                    <div class="col md-3">
+                        <label for="companion" class="form-label">Companion</label>
+                        <InputText class="form-control" placeholder="Companion" @bind-Value="model.Name" />
+                    </div>
+                </div>
+            </EditForm> 
+
+        </div>
+
+    </div>
+} 
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col"> Name </th>
+            <th scope="col"> Companion </th>
+
+            <th scope="col"> Edit </th>
+            <th scope="col"> Delete </th>
+        </tr>
+    </thead>
+
+<tbody>
+    @foreach (var trainer in trainers)
+        {
+          <tr>
+              <td> @trainer.Name </td>
+              <td> @trainer?.Companion?.Name</td>
+              
+                <td>
+                    <button class="btn btn-success" @onclick="() => Edit(trainer)">Edit</button>
+                </td>
+                <td>
+                    <button class="btn btn-danger" @onclick="() => Delete(trainer)">Delete</button>
+                </td>
+             
+          </tr>
+
+        }
+
+
+</tbody>
+</table>
+
+@code {
+
+    private List<Trainer> trainers;
+    private EditContext? editcontext;
+    private Pokemon? model;
+    private bool showform;
+
+    protected async override Task OnInitializedAsync()
+    {
+        trainers = await DbContext.Trainers.Include(t => t.Companion).ToListAsync();
+        model = new Pokemon();
+        editcontext = new EditContext(model);
+    }
+
+    private void Submit()
+    {
+        
+    }
+
+
+
+    private void ShowForm()
+    {
+        showform = !showform;  
+    }
+
+    private void Edit(Trainer trainers)
+    {
+       
+    }
+
+    private async Task Delete(Trainer trainers)
+    {
+
+    }
+}

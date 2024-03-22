@@ -1,18 +1,23 @@
-﻿@page "/Info/{id:int}" 
+﻿@page "/Info/{id:int}"
 @inject DatabaseContext DbContext
 @inject PokemonImageGrabber ImageGrabber
 
 <h3>Info</h3>
 
 @if (pokemon is not null)
-{
+{ 
 
 
     <div class="card">
         <div class="card-body bg-light">
+            <div class="row g-0">
+                <div class="col md-3">
+                    <img src="@imageurl" onerror="this.onerror=null;this.src='/img/sadtogepiedit.png';" style="width:325px" align="left" />
 
-            <img src="@imageurl" onerror="this.onerror=null;this.src='/img/sadtogepiedit.png';" style="width:425px" align="left"  />
+                </div>
+            </div>
 
+       
             <h1>@pokemon?.Name</h1>
             @if (pokemon?.Legendary == true)
             {
@@ -21,91 +26,44 @@
             <span class="badge text-bg-primary">@pokemon?.Type</span>
             <span class="badge text-bg-secondary">Generation @pokemon?.Generation</span>
 
-           
 
 
-
-            @if (@pokemon?.HP > 99) 
-            {
-                <p>HP</p>
-               <div align="right"></div>
+     
+            <p>HP</p>
+            <div align="right"></div>
             <div class="progress" style="height: 30px;">
-                <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="@pokemon?.HP" style="width:@(pokemon?.HP*100/255)%" aria-valuemin="1" aria-valuemax="255">@pokemon?.HP</div>
-            </div> }
-            else {
-                <p> HP </p>
-                <div align="right"> </div>
-                <div class="progress" style="height: 30px;">
-                    <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="@pokemon?.HP" style="width:@(pokemon?.HP*100/255)%" aria-valuemin="1" aria-valuemax="255">@pokemon?.HP</div>
-                </div>
-            }
+                <div class="@(GetColour(pokemon?.HP))" role="progressbar" aria-valuenow="@pokemon?.HP" style="width:@(pokemon?.HP*100/255)%" aria-valuemin="1" aria-valuemax="255">@pokemon?.HP</div>
+            </div>
 
-            @if (@pokemon?.Attack > 99)
-            {
-                <p>Attack</p>
-                <div align="right" class="progress" style="height: 30px;">
-                    <div class="progress-bar progress-bar-striped  progress-bar-animated bg-success" role="progressbar" aria-valuenow="@pokemon?.Attack" style="width:@(pokemon?.Attack*100/255)%" aria-valuemin="1" aria-valuemax="255">@pokemon?.Attack</div>
-                </div>
-            } 
-
-            else
-            {
-                <p>Attack</p>
-                <div align="right" class="progress" style="height: 30px;">
-                    <div class="progress-bar  bg-danger" role="progressbar" aria-valuenow="@pokemon?.Attack" style="width:@(pokemon?.Attack*100/255)%" aria-valuemin="1" aria-valuemax="255">@pokemon?.Attack</div>
-                </div>
-            }
+            <p>Attack</p>
+            <div align="right" class="progress" style="height: 30px;">
+                <div class="@(GetColour(pokemon?.Attack))" role="progressbar" aria-valuenow="@pokemon?.Attack" style="width:@(pokemon?.Attack*100/255)%" aria-valuemin="1" aria-valuemax="255">@pokemon?.Attack</div>
+            </div>
 
 
-            @if (@pokemon?.Defence > 99)
-            {
-                <p>Defence</p>
-                <div align="right" class="progress" style="height: 30px;">
-                    <div class="progress-bar progress-bar-striped  progress-bar-animated bg-success" role="progressbar" aria-valuenow="@pokemon?.Defence" style="width: @(pokemon?.Defence*100/255)%" aria-valuemin="1" aria-valuemax="255">@pokemon?.Defence</div>
-                </div>
-            } 
-            else
-            {
-                <p>Defence</p>
-                <div align="right" class="progress" style="height: 30px;">
-                    <div class="progress-bar  bg-danger" role="progressbar" aria-valuenow="@pokemon?.Defence" style="width: @(pokemon?.Defence*100/255)%" aria-valuemin="1" aria-valuemax="255">@pokemon?.Defence</div>
-                </div>
-            }
 
-            @if (pokemon?.Speed > 99)
-            {
-                <p>Speed</p>
-                <div align="right" class="progress" style="height: 30px;">
-                <div class="progress-bar progress-bar-striped  progress-bar-animated bg-success" role="progressbar" aria-valuenow="@pokemon?.Speed" style="width:@(pokemon?.Speed*100/255)%" aria-valuemin="1" aria-valuemax="255">@pokemon?.Speed</div>
-                </div>
-            }
-            else
-            {
-                <p>Speed</p>
-                <div align="right" class="progress" style="height: 30px;">
-                    <div class="progress-bar  bg-danger" role="progressbar" aria-valuenow="@pokemon?.Speed" style="width:@(pokemon?.Speed*100/255)%" aria-valuemin="1" aria-valuemax="255">@pokemon?.Speed</div>
-                </div>
-            }
+            <p>Defence</p>
+            <div align="right" class="progress" style="height: 30px;">
+                <div class="@(GetColour(pokemon?.Defence))" role="progressbar" aria-valuenow="@pokemon?.Defence" style="width: @(pokemon?.Defence*100/255)%" aria-valuemin="1" aria-valuemax="255">@pokemon?.Defence</div>
+            </div>
 
-            @if (pokemon?.Total > 500)
-            {
-                <p>BST</p>
-                <div align="right" class="progress" style="height: 30px;">
-                <div class="progress-bar progress-bar-striped  progress-bar-animated bg-success" role="progressbar" aria-valuenow="@pokemon?.Total" style="width:@(pokemon?.Total*100/800)%" aria-valuemin="150" aria-valuemax="800">@pokemon?.Total</div>
-                </div>
-            }
 
-            else
-            {
-                <p>BST</p>
-                <div align="right" class="progress" style="height: 30px;">
-                    <div class="progress-bar  bg-danger" role="progressbar" aria-valuenow="@pokemon?.Total" style="width:@(pokemon?.Total*100/800)%" aria-valuemin="150" aria-valuemax="800">@pokemon?.Total</div>
-                </div>
-            }
+            <p>Speed</p>
+            <div align="right" class="progress" style="height: 30px;">
+                <div class="@(GetColour(pokemon?.Speed))" role="progressbar" aria-valuenow="@pokemon?.Speed" style="width:@(pokemon?.Speed*100/255)%" aria-valuemin="1" aria-valuemax="255">@pokemon?.Speed</div>
+            </div>
+
+
+
+            <p>BST</p>
+            <div align="right" class="progress" style="height: 30px;">
+                <div class="@(GetColour(pokemon?.Total - 401))" role="progressbar" aria-valuenow="@pokemon?.Total" style="width:@(pokemon?.Total*100/800)%" aria-valuemin="150" aria-valuemax="800">@pokemon?.Total</div>
+            </div>
 
         </div>
     </div>
-
+    
+    
 
 
 
@@ -116,6 +74,7 @@
 else
 {
     <p> No Pokemon Found For ID @Id :( </p>
+ 
 
 }
 
@@ -124,13 +83,29 @@ else
     public int Id { get; set; }
 
     private Pokemon? pokemon;
-    private string imageurl; 
+    private string imageurl;
     protected override void OnInitialized()
     {
         pokemon = DbContext.Pokemons.SingleOrDefault(p => p.Id == Id);
-         imageurl = ImageGrabber.GetImageUrl(pokemon); 
+        imageurl = ImageGrabber.GetImageUrl(pokemon);
     }
 
-    
- 
+    private string GetColour(int? val)
+    {
+        if (val > 99)
+        {
+            return "progress-bar progress-bar-striped progress-bar-animated bg-success";
+        }
+
+        else if (val > 59)
+        {
+            return "progress-bar bg-warning"; 
+        }
+
+        else
+        {
+            return "progress-bar bg-danger";
+        } 
+    }
+
 }
