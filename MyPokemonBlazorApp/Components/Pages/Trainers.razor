@@ -6,7 +6,7 @@
 
 <div class="row g-0">
     <div class="col-md-12">
-        <button class="btn btn-primary float-end" @onclick="ShowForm">
+        <button class="btn btn-primary float-end" @onclick="showForm">
             Add 
         </button>
     </div>
@@ -16,11 +16,9 @@
 @if (showform)
 {
     <div class="card">
-        <div class="card-body bg-light"> 
-            <h4 class="card-title"> 
-                Add Trainer
-            </h4>
+        <div class="card-body bg-light">
             <EditForm OnValidSubmit="Submit" EditContext="editcontext">
+                <DataAnnotationsValidator/> 
                 <div class="row g-3"> 
                     <div class="col md-3">
                         <label for="name" class="form-label">Name</label>
@@ -29,13 +27,19 @@
                     <div class="col md-3">
                         <label for="companion" class="form-label">Companion</label>
                         <InputText class="form-control" placeholder="Companion" @bind-Value="model.Name" />
+              
                     </div>
-                </div>
+                    </div>
+                    <br />
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-primary float-end" @onclick="Add">Add Trainer</button>
+                    </div>
             </EditForm> 
+            </div> 
+            </div>
+        
 
-        </div>
 
-    </div>
 } 
 
 <table class="table">
@@ -73,10 +77,17 @@
 
 @code {
 
+
     private List<Trainer> trainers;
+    private List<Pokemon> pokemons;
     private EditContext? editcontext;
     private Pokemon? model;
     private bool showform;
+    private Trainer? trainer;
+    private int CompanionId;
+    private string Companion;
+    
+
 
     protected async override Task OnInitializedAsync()
     {
@@ -87,12 +98,17 @@
 
     private void Submit()
     {
-        
+
     }
 
+    private async void Add()
+    {
+        trainer = new Trainer();
+  
 
+    }
 
-    private void ShowForm()
+    private void showForm()
     {
         showform = !showform;  
     }
@@ -104,6 +120,6 @@
 
     private async Task Delete(Trainer trainers)
     {
-
+ 
     }
 }

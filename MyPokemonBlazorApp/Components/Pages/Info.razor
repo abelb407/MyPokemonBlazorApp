@@ -13,57 +13,76 @@
             <div class="row g-0">
                 <div class="col md-3">
                     <img src="@imageurl" onerror="this.onerror=null;this.src='/img/sadtogepiedit.png';" style="width:325px" align="left" />
+                    <h1>@pokemon?.Name</h1>
+                    @if (pokemon?.Legendary == true)
+                    {
+                        <span class="badge rounded-pill bg-warning">Legendary</span>
+                    }
+                    <span class="badge text-bg-primary">@pokemon?.Type</span>
+                    <span class="badge text-bg-secondary">Generation @pokemon?.Generation</span>
+
+
+
+                    <div class="row g-0">
+                        <div class="col md-3">
+                    <p>HP</p>
+                    <div align="right"></div>
+                    <div class="progress" style="height: 30px;">
+                        <div class="@(GetColour(pokemon?.HP))" role="progressbar" aria-valuenow="@pokemon?.HP" style="width:@(pokemon?.HP*100/255)%" aria-valuemin="1" aria-valuemax="255">@pokemon?.HP</div>
+                    </div>
+                    </div>
+                    </div>
+
+                    <div class="row g-0">
+                        <div class="col md-3">
+                    <p>Attack</p>
+                    <div align="right" class="progress" style="height: 30px;">
+                        <div class="@(GetColour(pokemon?.Attack))" role="progressbar" aria-valuenow="@pokemon?.Attack" style="width:@(pokemon?.Attack*100/255)%" aria-valuemin="1" aria-valuemax="255">@pokemon?.Attack</div>
+                    </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="row g-0">
+                        <div class="col md-3">
+                    <p>Defence</p>
+                    <div align="right" class="progress" style="height: 30px;">
+                        <div class="@(GetColour(pokemon?.Defence))" role="progressbar" aria-valuenow="@pokemon?.Defence" style="width: @(pokemon?.Defence*100/255)%" aria-valuemin="1" aria-valuemax="255">@pokemon?.Defence</div>
+                    </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row g-0">
+                        <div class="col md-3">
+                    <p>Speed</p>
+                    <div align="right" class="progress" style="height: 30px;">
+                        <div class="@(GetColour(pokemon?.Speed))" role="progressbar" aria-valuenow="@pokemon?.Speed" style="width:@(pokemon?.Speed*100/255)%" aria-valuemin="1" aria-valuemax="255">@pokemon?.Speed</div>
+                    </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="row g-0">
+                    <div class="col md-3">
+                    <p>BST</p>
+                    <div align="right" class="progress" style="height: 30px;">
+                        <div class="@(GetColour(pokemon?.Total - 401))" role="progressbar" aria-valuenow="@pokemon?.Total" style="width:@(pokemon?.Total*100/800)%" aria-valuemin="150" aria-valuemax="800">@pokemon?.Total</div>
+                    </div>
+                    </div>
+                </div>
 
                 </div>
             </div>
 
-       
-            <h1>@pokemon?.Name</h1>
-            @if (pokemon?.Legendary == true)
-            {
-                <span class="badge rounded-pill bg-warning">Legendary</span>
-            }
-            <span class="badge text-bg-primary">@pokemon?.Type</span>
-            <span class="badge text-bg-secondary">Generation @pokemon?.Generation</span>
-
-
-
-     
-            <p>HP</p>
-            <div align="right"></div>
-            <div class="progress" style="height: 30px;">
-                <div class="@(GetColour(pokemon?.HP))" role="progressbar" aria-valuenow="@pokemon?.HP" style="width:@(pokemon?.HP*100/255)%" aria-valuemin="1" aria-valuemax="255">@pokemon?.HP</div>
-            </div>
-
-            <p>Attack</p>
-            <div align="right" class="progress" style="height: 30px;">
-                <div class="@(GetColour(pokemon?.Attack))" role="progressbar" aria-valuenow="@pokemon?.Attack" style="width:@(pokemon?.Attack*100/255)%" aria-valuemin="1" aria-valuemax="255">@pokemon?.Attack</div>
-            </div>
-
-
-
-            <p>Defence</p>
-            <div align="right" class="progress" style="height: 30px;">
-                <div class="@(GetColour(pokemon?.Defence))" role="progressbar" aria-valuenow="@pokemon?.Defence" style="width: @(pokemon?.Defence*100/255)%" aria-valuemin="1" aria-valuemax="255">@pokemon?.Defence</div>
-            </div>
-
-
-            <p>Speed</p>
-            <div align="right" class="progress" style="height: 30px;">
-                <div class="@(GetColour(pokemon?.Speed))" role="progressbar" aria-valuenow="@pokemon?.Speed" style="width:@(pokemon?.Speed*100/255)%" aria-valuemin="1" aria-valuemax="255">@pokemon?.Speed</div>
-            </div>
-
-
-
-            <p>BST</p>
-            <div align="right" class="progress" style="height: 30px;">
-                <div class="@(GetColour(pokemon?.Total - 401))" role="progressbar" aria-valuenow="@pokemon?.Total" style="width:@(pokemon?.Total*100/800)%" aria-valuemin="150" aria-valuemax="800">@pokemon?.Total</div>
-            </div>
 
         </div>
-    </div>
-    
-    
+      </div> 
+
+       
+            
 
 
 
