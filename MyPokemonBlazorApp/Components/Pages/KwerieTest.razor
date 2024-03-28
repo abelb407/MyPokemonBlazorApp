@@ -1,25 +1,23 @@
-﻿@page "/"
+﻿@page "/qqq"
+@rendermode InteractiveServer
+@inject DatabaseContext DbContext
+@inject NavigationManager NavigationManager
 @using Microsoft.AspNetCore.Components.QuickGrid
 
-<PageTitle>Home</PageTitle>
+<h3>KwerieTest</h3>
 
-<h1>Pokemon</h1>
-
-<QuickGrid Items="@people" Pagination="@pagination">
+<QuickGrid Items="@people">
     <PropertyColumn Property="@(p => p.PersonId)" Sortable="true" />
     <PropertyColumn Property="@(p => p.Name)" Sortable="true" />
     <PropertyColumn Property="@(p => p.BirthDate)" Format="yyyy-MM-dd" Sortable="true" />
 </QuickGrid>
 
-<PokemonList />
-
 @code {
     record Person(int PersonId, string Name, DateOnly BirthDate);
-    private PaginationState pagination = new PaginationState { ItemsPerPage = 2 };
 
     IQueryable<Person> people = new[]
     {
-        new Person(10895, "Stacey", new DateOnly(1985, 3, 16)),
+        new Person(10895, "Jean Martin", new DateOnly(1985, 3, 16)),
         new Person(10944, "António Langa", new DateOnly(1991, 12, 1)),
         new Person(11203, "Julie Smith", new DateOnly(1958, 10, 10)),
         new Person(11205, "Nur Sari", new DateOnly(1922, 4, 27)),
@@ -27,8 +25,6 @@
         new Person(12130, "Kenji Sato", new DateOnly(2004, 1, 9)),
     }.AsQueryable();
 }
-
-
 
 
 
