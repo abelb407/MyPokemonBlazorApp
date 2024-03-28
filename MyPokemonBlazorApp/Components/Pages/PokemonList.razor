@@ -12,14 +12,15 @@
 
 </div>
 
-<QuickGrid Theme="pokemon" Class="table" Items="@FilteredPokemon" Pagination="@pagination">
+@code { /* <QuickGrid Theme="pokemon" Class="table" Items="@FilteredPokemon" Pagination="@pagination">
     <PropertyColumn Property="@(p => p.Id)" Sortable="true" />
     <PropertyColumn Property="@(p => p.Name)" Sortable="true" />
     <div class="search-box">
         <input type="search" autofocus @bind=nameSearch @bind:event="oninput" placeholder="Pokemon Name..." />
-    </div>
+        </div>
 
-</QuickGrid>
+    </QuickGrid> */
+}
 
 
 
